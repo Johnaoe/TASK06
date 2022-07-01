@@ -2,18 +2,11 @@ from tkinter import *
 import os
 import pandas as pd
 import webbrowser
-import yfinance as yf
 import numpy as np
-# import plotly.graph_objs as go
-# from yahoofinancials import YahooFinancials
-
-GOOG = round(yf.download('GOOG', period='1mo', progress=False, interval='1h'), 2)
-AMD = round(yf.download('AMD', period='1mo', progress=False, interval='1h'), 2)
-ASML = round(yf.download('ASML', period='1mo', progress=False, interval='1h'), 2)
-AAPL = round(yf.download('AAPL', period='1mo', progress=False, interval='1h'), 2)
-FB = round(yf.download('FB', period='1mo', progress=False, interval='1h'), 2)
-
-
+import tkinter as tk
+from tkinter import ttk
+import random
+from PIL import Image,ImageTk
 
 def registracija():
     global vartotojo_registracija
@@ -99,24 +92,9 @@ def prisijungimo_patviritnimas():
 def pavyko():
 
     root = Tk()
-    root.geometry("650x800")
+    root.geometry("500x500")
     root.iconbitmap('Stocks_31093.ico')
     root.title('Popierių info')
-
-    def goog(): press["text"] = GOOG
-    # def goog(): press["text"] = show
-    def aapl(): press["text"] = AAPL
-    def fb(): press["text"] = FB
-    def amd(): press["text"] = AMD
-    def asml(): press["text"] = ASML
-    
-    def googr(): press["text"] = GOOG
-    def aaplr(): press["text"] = AAPL
-    def fbr(): press["text"] = FB
-    def amdr(): press["text"] = AMD
-    def asmlr(): press["text"] = ASML
-    def fillerr(): press["text"] = "Roadmap" 
-    # def callback(url): webbrowser.open_new(url)
 
     window = Menu(root)
     root.config(menu=window)
@@ -125,40 +103,31 @@ def pavyko():
     window.add_cascade(label ="File", menu=file)
     file.add_command(label="Exit", command=window.quit)
 
-    Tickers = Menu(window, tearoff=0)
-    window.add_cascade(label = "Tickers", menu=Tickers)
-    Tickers.add_command(label="GOOGLE", command=goog)
 
-    Tickers.add_separator()
-    Tickers.add_command(label="APPLE", command=aapl)
-    Tickers.add_separator()
-    Tickers.add_command(label="META", command=fb)
-    Tickers.add_separator()
-    Tickers.add_command(label="AMD", command=amd)
-    Tickers.add_separator()
-    Tickers.add_command(label="ASML", command=asml)
+    def rng():
+        return random.choice(['paper','rock','scissors'])
+    
+    def reiksmes(choice):
+        keit={'paper':0, 'rock':1, 'scissors':2}
+        return keit[choice]
+    
+    def rng_reiksmes(choice):
+        rng_keit={0:'paper', 1:'rock', 2:'scissors'}
+        return rng_keit[choice]
+    
+    def result(player_pick, rng_pick):
 
-    Recomendations = Menu(window, tearoff=0)
-    window.add_cascade(label = "Recomendations", menu=Recomendations)
-    Recomendations.add_command(label="GOOGLE", command=googr)
-    Recomendations.add_separator()
-    Recomendations.add_command(label="APPLE", command=aaplr)
-    Recomendations.add_separator()
-    Recomendations.add_command(label="META", command=fbr)
-    Recomendations.add_separator()
-    Recomendations.add_command(label="AMD", command=amdr)
-    Recomendations.add_separator()
-    Recomendations.add_command(label="ASML", command=asmlr)
+        player = reiksmes(player_pick)
+        rng = reiksmes(rng_pick)
 
-    # link1 = Label("GOOGLE", text="Google Share Price Graph", fg="blue", cursor="hand2")
-    # link1.pack()
-    # link1.bind("<Button-1>", lambda e:callback("https://finance.yahoo.com/quote/GOOG?p=GOOG&.tsrc=fin-srch"))
+        if(player==rng):
+            print("Lygiosios")
+        elif((player-rng)%3==1):
+            print("Pralaimėjai")
+        else:
+            print("Laimėjai!")
 
-    algo = Menu(window, tearoff=0)
-    window.add_cascade(label = "Algo", menu=algo)
-    algo.add_command(label="Plan", command=filler)
-
-
+    root.mainloop()
 
     press = Label(root, text="Niekas")
     press.pack()
