@@ -90,32 +90,30 @@ def prisijungimo_patviritnimas():
         Label(vartotojo_login, text="Vartotojo paskyra neegzistuoja!", fg="red", font=("calibri", 11)).pack()
 
 def pavyko():
+    window=tk.Tk()
+    window.geometry("300x400")
+    window.iconbitmap('Stocks_31093.ico')
+    window.title('Popierių info')
 
-    root = Tk()
-    root.geometry("500x500")
-    root.iconbitmap('Stocks_31093.ico')
-    root.title('Popierių info')
+    PLAYER_REZ = 0
+    PLAYER_PICK = ""
+    RNG_REZ = 0
+    RNG_PICK = ""
 
-    window = Menu(root)
-    root.config(menu=window)
-
-    file = Menu(window, tearoff=0)
-    window.add_cascade(label ="File", menu=file)
-    file.add_command(label="Exit", command=window.quit)
-
-
-    def rng():
-        return random.choice(['paper','rock','scissors'])
-    
+    def randomly_generated_numbers():
+        return random.choice(['popierius','akmuo','žirklės'])
+        
     def reiksmes(choice):
-        keit={'paper':0, 'rock':1, 'scissors':2}
+        keit={'popierius':0, 'akmuo':1, 'žirklės':2}
         return keit[choice]
-    
-    def rng_reiksmes(choice):
-        rng_keit={0:'paper', 1:'rock', 2:'scissors'}
-        return rng_keit[choice]
-    
+        
+    def rng_reiksmes(number):
+        rng_keit={0:'popierius', 1:'akmuo', 2:'žirklės'}
+        return rng_keit[number]
+        
     def result(player_pick, rng_pick):
+        global PLAYER_REZ
+        global RNG_REZ
 
         player = reiksmes(player_pick)
         rng = reiksmes(rng_pick)
@@ -124,16 +122,12 @@ def pavyko():
             print("Lygiosios")
         elif((player-rng)%3==1):
             print("Pralaimėjai")
+            PLAYER_REZ+=1
         else:
             print("Laimėjai!")
-
-    root.mainloop()
-
-    press = Label(root, text="Niekas")
-    press.pack()
+            RNG_REZ+=1
 
     window.mainloop()
-
 
 def platformos_langas():
     global platforma
