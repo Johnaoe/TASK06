@@ -1,12 +1,6 @@
 from tkinter import *
 import os
-import pandas as pd
-import webbrowser
-import numpy as np
-import tkinter as tk
-from tkinter import ttk
-import random
-from PIL import Image,ImageTk
+import tkinter as tk 
 
 def registracija():
     global vartotojo_registracija
@@ -82,7 +76,7 @@ def prisijungimo_patviritnimas():
         verify = file1.read().splitlines()
         if slapta1 in verify:
             pavyko()
- 
+            
         else:
             Label(vartotojo_login, text="Blogas slaptažodis!", fg="red", font=("calibri", 11)).pack()
  
@@ -90,44 +84,10 @@ def prisijungimo_patviritnimas():
         Label(vartotojo_login, text="Vartotojo paskyra neegzistuoja!", fg="red", font=("calibri", 11)).pack()
 
 def pavyko():
-    window=tk.Tk()
-    window.geometry("300x400")
-    window.iconbitmap('Stocks_31093.ico')
-    window.title('Popierių info')
 
-    PLAYER_REZ = 0
-    PLAYER_PICK = ""
-    RNG_REZ = 0
-    RNG_PICK = ""
-
-    def randomly_generated_numbers():
-        return random.choice(['popierius','akmuo','žirklės'])
-        
-    def reiksmes(choice):
-        keit={'popierius':0, 'akmuo':1, 'žirklės':2}
-        return keit[choice]
-        
-    def rng_reiksmes(number):
-        rng_keit={0:'popierius', 1:'akmuo', 2:'žirklės'}
-        return rng_keit[number]
-        
-    def result(player_pick, rng_pick):
-        global PLAYER_REZ
-        global RNG_REZ
-
-        player = reiksmes(player_pick)
-        rng = reiksmes(rng_pick)
-
-        if(player==rng):
-            print("Lygiosios")
-        elif((player-rng)%3==1):
-            print("Pralaimėjai")
-            PLAYER_REZ+=1
-        else:
-            print("Laimėjai!")
-            RNG_REZ+=1
-
-    window.mainloop()
+    import paper as p
+    os.system(paper)
+    paper = 'paper.py'
 
 def platformos_langas():
     global platforma
