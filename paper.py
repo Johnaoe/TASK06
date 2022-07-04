@@ -1,8 +1,11 @@
 import random
 import tkinter as tk
+from tkinter import *
 
-paper=tk.Tk()
-paper.geometry("300x400")
+paper = Tk()
+paper.geometry("400x200")
+paper.iconbitmap('Stocks_31093.ico')
+paper.title('Popierių info')
 
 PLAYER_REZ = 0
 RNG_REZ = 0
@@ -36,8 +39,8 @@ def result(player_picks, rng_picks):
                 print("Laimėjai!")
                 RNG_REZ+=1
 
-        informacija = tk.Text(master=paper, height=12, width=40)
-        informacija.grid(column=15, row=4)
+        informacija = tk.Text(master=paper, height=4, width=40)
+        informacija.pack()
         rezultatai = "Tavo pasirinkimas: {a}\nPriešininko pasirinkimas: {b}\nTavo rez.: {c}\nPriešininko rez.: {d}".format(a=PLAYER_PICK, b=RNG_PICK, c=PLAYER_REZ, d=RNG_REZ)
         informacija.insert(tk.END, rezultatai)
 
@@ -62,11 +65,11 @@ def žirklės():
         RNG_PICK=randomly_generated_numbers()
         result(PLAYER_PICK, RNG_PICK)
 
-b1=tk.Button(text="Žirklės", bg="goldenrod",command=žirklės, height=1, width=40, font=('calibri', 12))
-b1.grid(column=15, row=1)
-b2=tk.Button(text="Popierius", bg="aquamarine", command=popierius, height=1, width=40, font=('calibri', 12))
-b2.grid(column=15, row=2)
-b3=tk.Button(text="Akmuo", bg="bisque",command=akmuo, height=1,width=40, font=('calibri', 12))
-b3.grid(column=15, row=3)  
+Label(text="").pack()
+Button(text="popierius", height="2", width="25", command = popierius, bg="goldenrod", master=paper).pack()
+Label(text="").pack()
+Button(text="žirklės", height="2", width="25", command = žirklės, bg="aquamarine", master=paper).pack()
+Label(text="").pack()
+Button(text="akmuo", height="2", width="25", command = akmuo, bg="bisque", master=paper).pack()
 
 paper.mainloop()
