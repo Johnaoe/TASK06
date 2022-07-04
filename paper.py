@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import *
 
 paper = Tk()
-paper.geometry("400x200")
+paper.geometry("400x300")
 paper.iconbitmap('Stocks_31093.ico')
 paper.title('Popierių info')
 
@@ -40,7 +40,7 @@ def result(player_picks, rng_picks):
                 RNG_REZ+=1
 
         informacija = tk.Text(master=paper, height=4, width=40)
-        informacija.pack()
+        informacija.place(x=40, y=190)
         rezultatai = "Tavo pasirinkimas: {a}\nPriešininko pasirinkimas: {b}\nTavo rez.: {c}\nPriešininko rez.: {d}".format(a=PLAYER_PICK, b=RNG_PICK, c=PLAYER_REZ, d=RNG_REZ)
         informacija.insert(tk.END, rezultatai)
 

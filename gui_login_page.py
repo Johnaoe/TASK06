@@ -5,7 +5,7 @@ import tkinter as tk
 def registracija():
     global vartotojo_registracija
     vartotojo_registracija = Toplevel(platforma)
-    vartotojo_registracija.geometry("400x200")
+    vartotojo_registracija.geometry("400x300")
     vartotojo_registracija.iconbitmap('Stocks_31093.ico')
     vartotojo_registracija.title('Popierių info')
 
